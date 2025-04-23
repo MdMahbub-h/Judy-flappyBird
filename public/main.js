@@ -51,7 +51,7 @@ class Game extends Phaser.Scene {
 
     this.unlocked = null;
 
-    this.soundOn = false;
+    this.soundOn = true;
 
     this.socket = new io();
 
@@ -141,13 +141,6 @@ class Game extends Phaser.Scene {
     this.load.image("yellow1", "flappyBird/yellow1.png");
     this.load.image("yellow2", "flappyBird/yellow2.png");
     this.load.image("star", "collectibles/start.png");
-
-    for (let i = 1; i <= 152; ++i) {
-      this.load.image(
-        `devil${i}`,
-        `Devil Emoji/fd1abf7e-069b-42d6-8022-72baf150dc66-${i - 1}.png`
-      );
-    }
 
     for (let i = 1; i <= 3; ++i) {
       this.load.image(`product${i}`, `products/product${i + 1}.png`);
@@ -1895,7 +1888,7 @@ class Game extends Phaser.Scene {
       .sprite(400, 300, "bird1")
       .setScale(0.8)
       .setDepth(4)
-      .setCircle(30, 10, 5)
+      .setCircle(25, 40, 35)
       .setAngle(10);
 
     this.player.anims.play("birdAnimation");
@@ -1912,7 +1905,7 @@ class Game extends Phaser.Scene {
 
     this.player.ended = false;
 
-    this.player.body.setGravityY(800);
+    this.player.body.setGravityY(1000);
 
     this.cameras.main.startFollow(this.player);
 
@@ -2066,7 +2059,7 @@ class Game extends Phaser.Scene {
     this.tweens.add({
       targets: coin,
       scaleX: { from: 0.55, to: 0.1 },
-      duration: 2000,
+      duration: 1500,
       yoyo: true,
       repeat: -1,
       ease: "Sine.InOut",
